@@ -1,0 +1,5 @@
+tasks:
+  - init: |
+      gem install cfhighlander rspec --no-doc
+
+
