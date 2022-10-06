@@ -20,17 +20,17 @@ CloudFormation do
       {
           PolicyName: "#{component_name.downcase}-set-logs-retention",
           PolicyDocument: {
-          Version: '2012-10-17',
-          Statement: [
+            Version: '2012-10-17',
+            Statement: [
               {
               Effect: 'Allow',
               Action: [
-                  'logs:CreateLogStream',
-                  'logs:PutLogEvents'
+                'logs:CreateLogStream',
+                'logs:PutLogEvents'
               ],
               Resource: '*'
               }
-          ]
+            ]
           }
       },
       {
@@ -38,24 +38,24 @@ CloudFormation do
           PolicyDocument: {
           Version: '2012-10-17',
           Statement: [
+            {
+              Effect: 'Allow',
+              Action: [
+                'rds:ModifyDBCluster',
+              ],
+              Resource: [
+                FnSub("arn:aws:rds:${AWS::Region}:${AWS::AccountId}:cluster:${DBClusterIdentifier}")
+              ]
+            },
               {
               Effect: 'Allow',
               Action: [
-                  'rds:ModifyDBCluster',
+                'rds:DescribeDBClusters',
               ],
               Resource: [
-                  FnSub("arn:aws:rds:${AWS::Region}:${AWS::AccountId}:cluster:${DBCluster}")
+                '*'
               ]
-              },
-              {
-              Effect: 'Allow',
-              Action: [
-                  'rds:DescribeDBClusters',
-              ],
-              Resource: [
-                  '*'
-              ]
-              }
+            }
           ]
           }
       }
