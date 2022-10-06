@@ -64,7 +64,7 @@ CloudFormation do
 
   Lambda_Function("AuroraMySQLServerlessV2Lambda") {
     Code({
-      ZipFile: File.open("aurora-mysql/modify.py").read
+      ZipFile: File.open("modify.py").read
     })
     Handler "index.lambda_handler"
     Runtime "python3.9"
