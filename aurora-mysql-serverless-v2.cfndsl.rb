@@ -149,7 +149,7 @@ CloudFormation do
     DependsOn :AuroraMySQLServerlessV2LogGroup
     Type "Custom::AuroraMySQLServerlessV2"
     Property 'ServiceToken', FnGetAtt("AuroraMySQLServerlessV2Lambda", :Arn)
-    Property 'DBClusterIdentifier', Ref(:DBCluster)
+    Property 'DBClusterIdentifier', Ref(:DBClusterIdentifier)
     Property 'MinCapacity', Ref(:MinCapacity)
     Property 'MaxCapacity', Ref(:MaxCapacity)
   }
